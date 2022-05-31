@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="night-mode-available">
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width height=device-height">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href={{url_for('static',filename='goalgo.ico')}}>
+  <script src="https://kit.fontawesome.com/e8922b1773.js" crossorigin="anonymous"></script>
+  <script src={{url_for('static',filename='script.js')}} charset="utf-8"></script>
+</head>
+
+<body class=''>
+  <!-- Night-Mode-Toggler -->
+  <div class="container">
+    <div class="night-mode-button" style='right:15vw;top:5vh;'>
+      <input type="checkbox" name="" value="" class='checkbox' id="night-mode">
+      <label for="night-mode" class="label">
+        <i class='fas fa-moon'></i>
+        <i class='fas fa-sun'></i>
+        <div class="blob" id="blob" style="background:white!important;">
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class='container'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+  {% block content %}
+  {% endblock %}
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+  <div class="container container-fluid" id='footer'>
+    <!-- <div class="container container-fluid" id='footer'> -->
+    <footer class="text-center text-white" style="background-color: #f1f1f1;">
+      <!-- Grid container -->
+      <div class="container pt-4" style='margin-top:0'>
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <p style='color:black'>View code on<a class="btn btn-link btn-floating btn-lg text-dark" style="padding-bottom:0.75rem;padding-left:0.5rem" href="https://github.com/Godzilla5111/GoAlgo-v1/" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-github"></i></a> </p>
+          <!-- Github -->
+          <!-- <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/Godzilla5111/GoAlgo-v1/" role="button" data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a> -->
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © <span>
+          <script>
+            document.write(new Date().getFullYear())
+          </script><span> Copyright
+            :
+            <a class="text-dark" href="https://www.linkedin.com/in/anurag5111">Anurag Singh</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- </div> -->
+  </div>
+  <script>
+    document.querySelector('.checkbox').addEventListener('change', () => {
+      document.querySelectorAll('.night-mode-available').forEach(ele => {
+        ele.classList.toggle('night');
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+
+</html>

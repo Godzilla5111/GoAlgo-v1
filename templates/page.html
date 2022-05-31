@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block title %}
+Problem - {{title}}
+{% endblock %}
+{% block content %}
+<div class="" id='outer'>
+  <div class="container container-fluid" id='page-content' class='content'>
+    <h1 id='title'><strong>{{title}}</strong></h1>
+    {{html_code}}
+    <br>
+    <p><strong>Original Problem URL: </strong><a href={{url}}>{{title}}</a></p>
+  </div
+</div>
+<style>
+  body{
+    background-image: url({{url_for('static',filename='images/background.jpg')}});
+    height:95vh;
+  }
+</style>
+{% endblock %}

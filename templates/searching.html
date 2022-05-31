@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class='night-mode-available'>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width height=device-height">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href={{url_for('static',filename='styles.css')}}>
+  <title>Search Results</title>
+  <link rel="icon" type="image/x-icon" href={{url_for('static',filename='goalgo.ico')}}>
+  <script src="https://kit.fontawesome.com/e8922b1773.js" crossorigin="anonymous"></script>
+  <script src={{url_for('static',filename='script.js')}} charset="utf-8"></script>
+</head>
+
+<body class='night-mode-available'>
+  <div class='container'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Night-Mode-Toggler -->
+  <div class="container">
+    <div class="night-mode-button">
+      <input type="checkbox" name="" value="" class='checkbox' id="night-mode">
+      <label for="night-mode" class="label">
+        <i class='fas fa-moon'></i>
+        <i class='fas fa-sun'></i>
+        <div class="blob" id="blob" style="background:white!important;">
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="container night-mode-available">
+    <!-- <img style='height:10vh;width:13vw;margin:1.2rem 0 1.2rem 0;display:inline' class="logo-img" src={{url_for('static',filename='images/goalgo.png')}} alt="Google Logo Image"> -->
+    <form class="form-inline" action="/" method="POST">
+      <div class="form-group top-search-bar">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <a href={{url_for('index')}}><img style='height:3rem;width:7rem;margin-top:1.25rem' class="logo-img night-mode-available" src={{url_for('static',filename='images/goalgo.png')}} alt="Google Logo Image"></a>
+          </div>
+
+          <div class="col-sm-8">
+            <input id='input' onkeypress="return alpha(event)" type="text" class="form-control col-lg-6" name="search_query" value='{{qry}}' aria-label="Search Bar" aria-describedby="basic-addon2" style='margin:1.5rem 0 1.5rem 0;border-radius:10rem'>
+          </div>
+          <div class="input-group-append search-glass">
+            <button class="" type="submit" style='margin:1.5rem 0 1.5rem 1rem;border:none;background: none;'><svg xmlns="http://www.w3.org/2000/svg" style='margin-top:4px' width="25" height="25" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg></button>
+          </div>
+          <div class="col-sm-2">
+            <span> </span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    {% if search_time %}
+    <p style='color:#2bd14a!important;padding-left:1rem;'         >Fetched top 5 results ({{search_time}}) seconds</p>
+    {% endif %}
+
+    {% if give_research_option %}
+      <h4 style='padding-left:1rem'>Showing results for <a style='text-decoration:none;font-weight:bold;' href="/search/{{returning}}">{{returning}}</a></h4>
+      <h5 style='padding-left:1rem'>Search instead for <a style='text-decoration:none;font-weight:bold;' href="/research/{{qry}}">{{qry}}</a></h5>
+      <br>
+    {% endif %}
+
+
+    {% if d %}
+    <div class="list-group night-mode-available">
+      {% for subd in d.values() %}
+      {% set val = subd.document_number %}
+      {% set str = "questions/problem_" + val + ".html" %}
+      <a href="{{url_for('problem_page',problem_id=val)}}" class="list-group-item list-group-item-action night-mode-available">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1" style='color:blue'>{{subd.title}}</h4>
+          {% if subd.score=='0.0' %}
+          <small style='color:red!important'>Match score: {{subd.score}}</small>
+          {% else %}
+          <small style='color:grey'>Match score: {{subd.score}}</small>
+          {% endif %}
+        </div>
+        <p class="mb-1">{{' '.join(subd.keywords.split(' ')[1:11])}} ...</p>
+      </a>
+
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+  <div class="container my-5">
+
+    <!-- <div class="container container-fluid" id='footer'> -->
+    <footer class="text-center text-white" style="background-color: #f1f1f1;">
+      <!-- Grid container -->
+      <div class="container pt-4" style='margin-top:0'>
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <p style='color:black'>View code on<a class="btn btn-link btn-floating btn-lg text-dark" style="padding-bottom:0.75rem;padding-left:0.5rem" href="https://github.com/Godzilla5111/GoAlgo-v1/" role="button" data-mdb-ripple-color="dark"><i
+                class="fab fa-github"></i></a> </p>
+          <!-- Github -->
+          <!-- <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/Godzilla5111/GoAlgo-v1/" role="button" data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+        </section> -->
+          <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © <span>
+          <script>
+            document.write(new Date().getFullYear())
+          </script><span> Copyright
+            :
+            <a class="text-dark" href="https://www.linkedin.com/in/anurag5111">Anurag Singh</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- </div> -->
+
+  </div>
+
+  <script>
+    document.querySelector('.checkbox').addEventListener('change', () => {
+      document.querySelectorAll('.night-mode-available').forEach(ele => {
+        ele.classList.toggle('night');
+      });
+    });
+  </script>
+  <!-- End of .container -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+
+</html>

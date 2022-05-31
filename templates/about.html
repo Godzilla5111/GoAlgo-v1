@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container container-fluid" id='about-content'>
+  <h1><strong>About GoAlgo</strong></h1>
+  <br>
+  <h3>What is GoAlgo?</h3>
+  <p>
+
+    <b>GoAlgo</b> is a <b>search engine</b>, i.e nothing but a software system designed to carry out web searches. It scans its corpus (consisting of a whopping 6500+ documents!) in a systematic way for particular information specified in a textual
+    web search query. The <b>top 5 </b>search results are presented in a line
+    of results, referred to as search engine results pages.<br>
+  </p>
+  <p>
+    Notably, <b>GoAlgo</b> is a <b>Vertical Search Engine.</b> Vertical search, or specialized search, is a way of narrowing your search to one topic category, rather than the entirety of the web.<br> In the case of GoAlgo, the specific topic it
+    deals with is <b>'Commonly used Data Structures and Algorithms and problems based upon them.'</b>
+  </p>
+  <p>Some other examples of vertical search engines include: <p>
+      <ul>
+        <li>The search bar on shopping sites like eBay and Amazon</li>
+        <li>Google Scholar, which indexes scholarly literature across publications</li>
+        <li>Searchable social media sites and apps like Pinterest</li>
+      </ul>
+
+      <h3>How does it work?</h3>
+      <p>
+        Using GoAlgo is easy, isn't it? You open up the search page, type a few words into the search bar, and voilà — a list of top 5 of results appear, in mere seconds! <br> But under the hood, a lot of heavy lifting is being done.
+        Search engines out there in the wild are pretty complex when it comes to the algorithms they use. <br>GoAlgo follows a pretty basic formula. It's a simple two step process -
+      </p><br>
+      <h5>Step 1. Search</h5>
+      <p>When you enter your, GoAlgo must first <b>preprocess</b> your words into relevant terms. This is done via a host of techniques including <b>natural language processing</b>. The output of this initial translation process is a <b>rewritten
+          query that identifies the important parts of your query, corrects misspellings, lemmatizes the query, converts numbers to their word-equivalents</b> etc. GoAlgo then skims through its corpus to find web pages that match the rewritten query.
+      </p>
+      <br>
+      <h5>Step 2. Rank</h5>
+      <p>A single search may turn up thousands of relevant documents, so part of the job of GoAlgo is to sort these listings using some <b>ranking algorithm</b>. And although these algorithms are designed to provide you with the best answers to your
+        questions, they are biased towards certain factors.
+        GoAlgo wants you to show you results that you’ll click on, and they use a variety of factors to rank results according to what it think syou’ll engage with. </p>
+      <p>GoAlgo uses <a href="https://en.wikipedia.org/wiki/Okapi_BM25" style='text-decoration:none'><b>Okapi BM-25</b></a> algorithm to present you with a list of top-5 results prioritized by what it thinks will best answer your query.
+        <br><br>
+        <center>
+          <img style='padding:10%' src="{{url_for('static',filename='images/about.png')}}" alt="">
+        </center>
+        <br>
+        <p>So, in a nutshell, that was all about the working of GoAlgo. <br><br>Still not satisfied? Have any questions to ask or suggestions to offer? You are welcome to <b>connect with me on Linkedin.</b> (Link in the footer below!)</p>
+</div>
+
+{% endblock %}
