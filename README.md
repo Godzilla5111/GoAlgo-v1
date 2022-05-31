@@ -2,7 +2,7 @@
 
 **About GoAlgo**
 ================
-
+![image](https://user-images.githubusercontent.com/62075225/171186132-ec304e00-a37d-400a-b9fc-460b7d972cb6.png)
   
 
 ### What is GoAlgo?
@@ -21,7 +21,11 @@ Some other examples of vertical search engines include:
 ### How does it work?
 
 Using GoAlgo is easy, isn't it? You open up the search page, type a few words into the search bar, and voilà — a list of top 5 of results appear, in mere seconds!  
-But under the hood, a lot of heavy lifting is being done. Search engines out there in the wild are pretty complex when it comes to the algorithms they use.  
+<br>
+![image](https://user-images.githubusercontent.com/62075225/171187776-01573169-bd3a-4eb8-8979-3638b1b4387a.png)
+<br>
+But under the hood, a lot of heavy lifting is being done. Search engines out there in the wild are pretty complex when it comes to the algorithms they use. 
+
 GoAlgo follows a pretty basic formula. It's a simple two step process -
 
   
@@ -35,6 +39,9 @@ When you enter your, GoAlgo must first **preprocess** your words into relevant t
 ##### Step 2. Rank
 
 A single search may turn up thousands of relevant documents, so part of the job of GoAlgo is to sort these listings using some **ranking algorithm**. And although these algorithms are designed to provide you with the best answers to your questions, they are biased towards certain factors. GoAlgo wants you to show you results that you’ll click on, and they use a variety of factors to rank results according to what it think syou’ll engage with.
+
+![image](https://user-images.githubusercontent.com/62075225/171187443-2c8097ca-2dfb-49bf-befa-14f23afe3266.png)
+
 
 GoAlgo uses [**Okapi BM-25**](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm to present you with a list of top-5 results prioritized by what it thinks will best answer your query.  
   
