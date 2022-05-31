@@ -39,5 +39,17 @@ A single search may turn up thousands of relevant documents, so part of the job 
 GoAlgo uses [**Okapi BM-25**](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm to present you with a list of top-5 results prioritized by what it thinks will best answer your query.  
   
 So, in a nutshell, that was all about the working of GoAlgo.  
-  
+
+
+## Steps to Build the App Locally
+
+### Getting started
+1. Clone this repo: `git clone https://github.com/Godzilla5111/GoAlgo-v1.git` <br>
+2. Change to the repo directory: `cd GoAlgo-v1` <br>
+3. If you want to use virtual environment: `conda create --name` 
+  <br> To activate the environment : `conda activate --name`
+  <br> To deactivate the environment : `conda deactivate` <br>
+4. Install dependencies with pip or conda: `pip install -r requirements.txt` or `conda install -r requirements.txt` <br>
+6. Make sure to activate the environment. Then open the command line and run the app: `python app.py` <br>
+
 
