@@ -1,4 +1,3 @@
-# GoAlgo-v1
 # GoAlgo-v1.0
 
 **About GoAlgo**
