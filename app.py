@@ -58,7 +58,6 @@ def searching(qry):
     if(qry!=spell(qry)):
         returning = spell(qry)
         give_research_option = True
-        print('SPELLINNG MISTAKE!')
     print('\n\n')
     print(qry)
     print(preprocess(qry))
